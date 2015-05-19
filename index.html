@@ -1,11 +1,90 @@
 <html>
 	<head>
 		<style>
-			
+			.Container{
+				width:320px;
+				height:320px;
+				border:1px solid black;	
+				display:block;
+				position:relative;
+				overflow: hidden;
+			}
+			.eachContent{
+				position:relative;
+				width:25%;
+				margin:0;
+				border:1px solid black;
+				display:inline-block;
+			}
+			.wrap{
+				margin:0 auto;
+				position:absolute;
+				background-color:black;
+				display:inline;
+				border-radius: 100%;
+				width:50px;
+				height: 50px;
+			}
 		</style>
 	</head>
 	<body>
-		
+		<div class="Container">
+			<div class="eachContent">
+				asd
+			</div>
+			<div class="eachContent">
+				asd
+			</div>
+			<div class="eachContent">
+				asd
+			</div>
+			<div class="eachContent">
+				asd
+			</div>
+			<div class="eachContent">
+				asd
+			</div>
+			<div class="eachContent">
+				asd
+			</div>
+			<div class="eachContent">
+				asd
+			</div>
+			<div class="eachContent">
+				asd
+			</div>
+			<div class="eachContent">
+				asd
+			</div>
+			<div class="eachContent">
+				asd
+			</div>
+			<div class="eachContent">
+				asd
+			</div>
+			<div class="eachContent">
+				asd
+			</div>
+		</div>
 	</body>
 </html>
 <script src="jquery-1.10.2.js"></script>
+<script>
+	var x;
+	var y;
+	// $(document).on('click','.eachContent',function(){
+	// 	$(this).css({'position':'absolute'}).animate({'width':'100%','height':'100%'})
+	// })
+	$(document).on('click','.eachContent',function(e){
+		var x = e.clientX-30;
+		var y = e.clientY-30;
+		$('.Container').append('<div class="wrap">asd</div>');
+		$('.wrap').css({'left':x+'px','top':y+'px'}).animate({'width':'3000px','height':'3000px','margin-top':'-1500px','margin-left':'-1500px'},800);
+		// $(this).animate({'width':'100%'})
+	})
+	// $(document).on('click','.wrap',function(){
+	// 	$(this).animate({'width':'0%','height':'0%','margin-top':y+'px','margin-left':x+'px','border-radius':'100%'},function(){
+	// 		$('.wrap').remove();
+	// 	})
+	// })
+</script>
