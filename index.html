@@ -79,7 +79,9 @@
 		var x = e.clientX-30;
 		var y = e.clientY-30;
 		$('.Container').append('<div class="wrap">asd</div>');
-		$('.wrap').css({'left':x+'px','top':y+'px'}).animate({'width':'3000px','height':'3000px','margin-top':'-1500px','margin-left':'-1500px'},800);
+		$('.wrap').css({'left':x+'px','top':y+'px'}).animate({'width':'3000px','height':'3000px','margin-top':'-1500px','margin-left':'-1500px','opacity':'0'},400,function(){
+			$(this).remove();
+		});
 		// $(this).animate({'width':'100%'})
 	})
 	// $(document).on('click','.wrap',function(){
