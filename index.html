@@ -73,10 +73,10 @@
 				<img src="http://c2.staticflickr.com/6/5548/11874722676_6450fcb8ba_b.jpg" alt="">
 			</div>
 			<div class="eachContent">
-				<img src="http://archive.eusa.eu/files/News/2012/photoc-camera_w2.jpg" alt="">
+				<img src="http://upload.wikimedia.org/wikipedia/commons/5/5b/Ultraviolet_image_of_the_Cygnus_Loop_Nebula_crop.jpg" alt="">
 			</div>
 			<div class="eachContent">
-				<img src="http://archive.eusa.eu/files/News/2012/photoc-camera_w2.jpg" alt="">
+				<img src="http://www.natures-word.com/wp-content/themes/naturesword/images/content/square.gif" alt="">
 			</div>
 			<div class="eachContent">
 				<img src="http://archive.eusa.eu/files/News/2012/photoc-camera_w2.jpg" alt="">
@@ -109,9 +109,8 @@
 		$('.Container').append('<div class="wrap">asd</div>');
 		$('.Container').append('<div class="hiddenDiv"><span class="closer">x</span><img src="" alt=""></div>')
 		$('.hiddenDiv img').attr('src',$(this).find('img').attr('src'))
-		$('.wrap').css({'left':x+'px','top':y+'px'}).animate({'width':'3000px','height':'3000px','margin-top':'-1500px','margin-left':'-1500px','opacity':'0'},400,function(){
-			$('.hiddenDiv').animate({'opacity':'1'},200)
-		});
+		$('.wrap').css({'left':x+'px','top':y+'px'}).animate({'width':'3000px','height':'3000px','margin-top':'-1500px','margin-left':'-1500px','opacity':'0'},{duration:800,queue:false});
+		$('.hiddenDiv').animate({'opacity':'1'},{duration:800,queue:false})
 
 		// $(this).animate({'width':'100%'})
 	})
