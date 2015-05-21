@@ -129,7 +129,7 @@
 	$('.box').on('mouseenter',function(){
 		var rotate = 45;
  		var counter = 0;
- 		
+
 		function myLoop(){
 			setTimeout(function(){
 				$('.box').css({
@@ -140,10 +140,10 @@
 					'transform':'rotate('+counter+'deg)',
 				});
 				if(counter <= rotate){
+					counter++;
 					myLoop();
 				}
 			},1);
-			counter++;
 		}
 
 		myLoop();
@@ -162,10 +162,10 @@
 					'transform':'rotate('+counter+'deg)',
 				});
 				if(counter >= rotate){
+					counter--;
 					myLoop();
 				}
 			},1)
-			counter--;
 		}
 
 		myLoop();
