@@ -53,12 +53,75 @@
 			.hiddenDiv .closer:hover{
 				cursor:pointer;
 			}
-
+			.boxes{
+				/*position:absolute;*/
+				width:50px;
+				height:50px;
+			}
 			.box{
 				width:30px;
 				height:30px;
 				background-color:#000;
 				margin:20px;
+			}
+
+			.box2{
+				position:relative;
+				width:300px;
+				height:150px;
+				border:1px solid black;
+			}
+			.box3{
+				background-color:green;
+				margin:20px;
+			}
+			.box4{
+				background-color:blue;
+			}
+			.box5{
+				background-color:red;
+				margin-top:10px;
+			}
+			.div1{
+				position:absolute;
+				left:0;
+				width:19%;
+				border:1px solid black;
+				height: 100%
+				-webkit-touch-callout: none;
+			    -webkit-user-select: none;
+			    -khtml-user-select: none;
+			    -moz-user-select: none;
+			    -ms-user-select: none;
+			    user-select: none;
+			}
+			.div2{
+				position:relative;
+				float:right;
+				top:0;
+				right:0;
+				border:1px solid black;
+				width:80%;
+				height: 100%;
+				overflow: hidden;
+			}
+			.color1{
+				background-color:red;
+				width:100%;
+				height:20px;
+			}
+			.color2{
+				background-color:blue;
+				width:100%;
+				height:20px;
+			}
+			.wrap2{
+				margin:0 auto;
+				position:absolute;
+				display:inline;
+				border-radius: 100%;
+				width:50px;
+				height: 50px;
 			}
 		</style>
 	</head>
@@ -103,6 +166,30 @@
 		</div>
 
 		<div class="box"></div>
+
+		<div class="box2">
+			<div class="div1">
+				<div class="colors color1">
+					
+				</div>
+				<div class="colors color2">
+					
+				</div>
+			</div>
+			<div class="div2"></div>
+		</div>
+
+		<div class="boxes box3">
+			clickme
+		</div>
+		<div>
+			<div class="boxes box4">
+				
+			</div>
+			<div class="boxes box5">
+				clickme
+			</div>
+		</div>
 	</body>
 </html>
 <script src="jquery-1.10.2.js"></script>
@@ -113,8 +200,8 @@
 	// 	$(this).css({'position':'absolute'}).animate({'width':'100%','height':'100%'})
 	// })
 	$(document).on('click','.eachContent',function(e){
-		var x = e.clientX-35;
-		var y = e.clientY-30;
+		var x = e.clientX;
+		var y = e.clientY;
 		$('.Container').append('<div class="wrap">asd</div>');
 		$('.Container').append('<div class="hiddenDiv"><span class="closer">x</span><img src="" alt=""></div>')
 		$('.hiddenDiv img').attr('src',$(this).find('img').attr('src'))
@@ -139,11 +226,11 @@
 					'-ms-transform':'rotate('+counter+'deg)',
 					'transform':'rotate('+counter+'deg)',
 				});
-				if(counter <= rotate){
+				if(counter < rotate){
 					counter++;
 					myLoop();
 				}
-			},1);
+			},0);
 		}
 
 		myLoop();
@@ -161,13 +248,105 @@
 					'-ms-transform':'rotate('+counter+'deg)',
 					'transform':'rotate('+counter+'deg)',
 				});
-				if(counter >= rotate){
+				if(counter > rotate){
 					counter--;
 					myLoop();
 				}
-			},1)
+			},0)
 		}
 
 		myLoop();
 	})
+
+	var dragged;
+	$('.colors').mousedown(function(){
+		dragged = $(this).css('background-color');
+	})
+	function hey(){
+		alert('asd');
+		console.log('asd')
+	}
+	$(document).mouseup(function(f){
+		if(f.toElement.className == "div2"){
+			if(dragged != ""){
+				var elm = $('.div2')
+				var xs = (f.pageX - $(elm).offset().left)-30;
+		   		var ys = (f.pageY - $(elm).offset().top)-25;
+				$('.div2').append('<div class="wrap2"></div>');
+				$('.wrap2').css({'left':xs+'px','top':ys+'px','background-color':dragged}).animate({'width':'1000','height':'1000px','margin-top':'-500px','margin-left':'-500px'},{duration:800,queue:false}).promise().done(function(){
+					$('.div2').css({'background-color':dragged}).promise().done(function(){
+						$('.wrap2').remove();
+						dragged = "";
+					})
+					dragged = "";
+				})
+			}
+		}else{
+			dragged = "";
+		}
+	})
+
+	$('.box3').on('click',function(){
+		speed = 400;
+		for (var i = 0; i < 15; i++) {
+			$(this).animate(
+					{'margin-left':40,'margin-top':40},{
+						duration:speed,
+						easing:'swing',
+				}).animate(
+					{'margin-top':'20px'},{
+						duration:speed,
+						easing:'swing',	
+				}).animate(
+					{'margin-left':'20px','margin-top':'40px'},{
+						duration:speed,
+						easing:'swing'
+				}).animate(
+					{'margin-top':'20px'},{
+						duration:speed,
+						easing:'swing'
+				})
+			speed = speed - 20;
+		};
+			// .animate(
+			// 	{left:325},{
+			// 		duration:400,
+			// 		easing:'swing'
+			// }).animate(
+			// 	{left:275},{
+			// 		duration:300,
+			// 		easing:'swing'
+			// })
+	})
+
+	$('.box5').on('click',function(){
+		$(this).animate({'margin-top':'0px'},{
+			duration:50,
+			easing:'swing'
+		}).animate({'margin-top':'3px'},{
+			duration:50,
+			easing:'swing',
+		}).animate({'margin-top':'0px'},{
+			duration:50,
+			easing:'swing'
+		}).animate({'margin-top':'1px'},{
+			duration:50,
+			easing:'swing'
+		}).animate({'margin-top':'0px'},{
+			duration:50,
+			easing:'swing'
+		})
+	})
+	// $(document).mouseup(function(w){
+		
+	// })
+	// $('.div2').on('click',function(f){
+	// 	$(this).append('<div class="wrap2"></div>')
+	// 	var elm = $(this);
+	//     var xs = (f.pageX - $(elm).offset().left)-35;
+	//     var ys = (f.pageY - $(elm).offset().top)-30;
+	// 	$('.wrap2').css({'left':xs+'px','top':ys+'px','background-color':'#000'}).animate({'width':'1000','height':'1000px','margin-top':'-500px','margin-left':'-500px','opacity':'0'},{duration:800,queue:false},function(){
+	// 		$(this).remove();
+	// 	});
+	// })
 </script>
